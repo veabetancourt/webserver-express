@@ -1,32 +1,46 @@
+require('dotenv').config();
 const express = require('express')
 const app = express();
+
 
 const hbs = require('hbs');
 require('./hbs/helpers');
 
-const port = process.env.port  || 3000;
-
-
-
-app.use(express.static( __dirname + '/public'));
-
+const port = process.env.PORT;
 
 //Express HBS engine
-hbs.registerPartials(__dirname + '/views/parciales');
 app.set('view engine', 'hbs');
- 
- app.get('/',  (req, res) => {
+hbs.registerPartials(__dirname + '/views/parciales');
 
- res.render('home',{
-     nombre: 'Angel',
-    
+app.use(express.static( 'public'));
+
+ app.get('/',  (req, res) => {
+    res.render('home', {
+     nombre: 'Angel Betancourt',
+     titulo: 'Curso de Node'
  });
 
 });
 
-app.get('/about',  (req, res) => {
+app.get('/generic',  (req, res) => {
+    res.render('generic', {
+        nombre: 'Angel Betancourt',
+     titulo: 'Curso de Node'
+    });
+   });
 
-    res.render('about');
+   app.get('/elements',  (req, res) => {
+    res.render('elements', {
+        nombre: 'Angel Betancourt',
+     titulo: 'Curso de Node'
+    });
+   });
+
+   app.get('/home',  (req, res) => {
+    res.render('home', {
+        nombre: 'Angel Betancourt',
+     titulo: 'Curso de Node'
+    });
    });
 
 
