@@ -44,6 +44,10 @@ app.get('/generic',  (req, res) => {
    });
 
 
+app.get('*', (req, resp)=> {
+    resp.sendFile(__dirname + '/public/index.html');
+})
+
 app.listen(port,()=> {
     console.log(`Escuchando peticiones en el puerto ${ port }`);
 });
